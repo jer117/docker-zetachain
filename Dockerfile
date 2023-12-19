@@ -17,7 +17,7 @@ ARG VERSION=v11.0.0-rc
 RUN git clone https://github.com/zeta-chain/node.git \
     && cd node \
     && git checkout tags/$VERSION \
-    && make install-testnet \
+    && make install \
     && make build
 
 RUN mkdir -p /root/.zetacored/bin
