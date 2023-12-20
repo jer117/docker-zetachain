@@ -14,6 +14,8 @@ RUN update-ca-certificates
 
 ARG VERSION=v11.0.0
 
+ADD https://github.com/zeta-chain/node/releases/download/${VERSION}/zetaclientd-linux-amd64 .
+
 RUN git clone https://github.com/zeta-chain/node.git \
     && cd node \
     && git checkout tags/$VERSION \
@@ -31,10 +33,11 @@ FROM ubuntu:jammy
 
 # Install ca-certificates
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y ca-certificates curl wget jq \
+    && apt-get install -y ca-certificates curl wget jq git \
     && apt-get -y purge && apt-get -y clean
 
 COPY --from=go-builder /go/bin/zetacored /usr/bin/zetacored
+COPY --from=go-builder /go/bin/zetaclientd /usr/bin/zetaclientd
 
 # Run the binary.
 CMD ["/bin/sh"]
