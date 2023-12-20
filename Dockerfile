@@ -12,7 +12,7 @@ RUN apt-get install -y $PACKAGES
 # Update ca certs
 RUN update-ca-certificates
 
-ARG VERSION=v11.0.0-rc
+ARG VERSION=v11.0.0
 
 RUN git clone https://github.com/zeta-chain/node.git \
     && cd node \
