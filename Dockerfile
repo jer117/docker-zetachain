@@ -12,7 +12,7 @@ RUN apt-get install -y $PACKAGES
 # Update ca certs
 RUN update-ca-certificates
 
-ARG VERSION=v11.0.0
+ARG VERSION=v11.0.4
 
 ADD https://github.com/zeta-chain/node/releases/download/${VERSION}/zetaclientd-linux-amd64 .
 
